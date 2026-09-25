@@ -1,0 +1,165 @@
+﻿<Window x:Class="STARGBA.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="STARGBA"
+        Width="900"
+        Height="650"
+        MinWidth="700"
+        MinHeight="450"
+        Background="#101217"
+        Foreground="#E8EAED">
+
+    <Window.Resources>
+
+        <!-- Main colors -->
+        <SolidColorBrush x:Key="PanelBrush" Color="#181B21"/>
+        <SolidColorBrush x:Key="PanelBorderBrush" Color="#292E37"/>
+        <SolidColorBrush x:Key="SecondaryTextBrush" Color="#8B929D"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#4ADE80"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#F87171"/>
+
+        <!-- Button style -->
+        <Style x:Key="ControlButton" TargetType="Button">
+            <Setter Property="Background" Value="#22262E"/>
+            <Setter Property="Foreground" Value="#E8EAED"/>
+            <Setter Property="BorderBrush" Value="#343A45"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="18,10"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+    </Window.Resources>
+
+
+    <Grid Margin="28">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0">
+
+            <StackPanel>
+                <TextBlock Text="STARGBA"
+                           FontSize="30"
+                           FontWeight="Bold"
+                           Foreground="White"/>
+
+                <TextBlock Text="System Telemetry And RGB Application"
+                           FontSize="13"
+                           Foreground="{StaticResource SecondaryTextBrush}"
+                           Margin="0,2,0,0"/>
+            </StackPanel>
+
+
+            <!-- Global connection status -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+
+                <Ellipse x:Name="ConnectionIndicator"
+                         Width="10"
+                         Height="10"
+                         Fill="{StaticResource DangerBrush}"
+                         Margin="0,0,8,0"/>
+
+                <TextBlock x:Name="ConnectionStatusText"
+                           Text="Disconnected"
+                           FontSize="14"
+                           FontWeight="SemiBold"
+                           VerticalAlignment="Center"/>
+
+            </StackPanel>
+
+        </Grid>
+
+
+        <!-- DEVICES -->
+        <Border Grid.Row="2"
+                Background="{StaticResource PanelBrush}"
+                BorderBrush="{StaticResource PanelBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="22">
+
+            <StackPanel>
+
+                <TextBlock Text="DEVICES"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource SecondaryTextBrush}"/>
+
+                <TextBlock Text="Connected ADB devices"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Margin="0,4,0,18"/>
+
+
+                <!-- Dynamic device list -->
+
+                <StackPanel x:Name="DevicesPanel">
+
+                    <TextBlock x:Name="NoDevicesText"
+                               Text="No devices detected"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               FontSize="14"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </Border>
+
+
+        <!-- CONTROLS -->
+        <Border Grid.Row="4"
+                Background="{StaticResource PanelBrush}"
+                BorderBrush="{StaticResource PanelBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="22">
+
+            <StackPanel>
+
+                <TextBlock Text="DISPLAY CONTROL"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource SecondaryTextBrush}"/>
+
+                <TextBlock Text="Selected device"
+                           FontSize="20"
+                           FontWeight="SemiBold"
+                           Margin="0,4,0,18"/>
+
+
+                <StackPanel Orientation="Horizontal">
+
+                    <Button x:Name="ScreenOnButton"
+                            Content="SCREEN ON"
+                            Style="{StaticResource ControlButton}"
+                            Click="ScreenOn_Click"
+                            IsEnabled="False"/>
+
+                    <Button x:Name="ScreenOffButton"
+                            Content="SCREEN OFF"
+                            Style="{StaticResource ControlButton}"
+                            Click="ScreenOff_Click"
+                            IsEnabled="False"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
+
+</Window>
